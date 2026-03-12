@@ -1,74 +1,78 @@
-<!DOCTYPE html><html>
+>
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Syntrix AI</title><style>
+<title>Syntrix AI</title>
+<style>
 body{
-background:#0f172a;
-color:white;
-font-family:Arial;
+font-family: Arial;
 text-align:center;
+background:#111;
+color:white;
 }
 
-h1{
-margin-top:40px;
+.container{
+margin-top:50px;
 }
 
 input{
-padding:12px;
-width:250px;
-font-size:16px;
+padding:10px;
+width:200px;
 }
 
 button{
-padding:12px 20px;
-background:#22c55e;
+padding:10px 20px;
+background:#00ffcc;
 border:none;
 font-size:16px;
-color:white;
-cursor:pointer;
 }
 
-#chatbox{
-margin-top:30px;
+#reply{
+margin-top:20px;
+color:#00ffcc;
 font-size:18px;
-color:#38bdf8;
 }
-</style></head><body><h1>🤖 Syntrix AI</h1><input id="question" placeholder="कुछ पूछो...">
-<button onclick="askAI()">भेजें</button><div id="chatbox"></div><script>
+</style>
+</head>
 
-async function askAI(){
+<body>
 
-let question=document.getElementById("question").value;
+<h1>🤖 Syntrix AI</h1>
 
-document.getElementById("chatbox").innerHTML="AI सोच रहा है...";
+<div class="container">
 
-let response = await fetch("https://api.openai.com/v1/chat/completions",{
+<input type="text" id="userInput" placeholder="कुछ पूछें">
+<button onclick="askAI()">भेजें</button>
 
-method:"POST",
+<div id="reply"></div>
 
-headers:{
-"Content-Type":"application/json",
-"Authorization":"Bearer YOUR_API_KEY"
-},
+</div>
 
-body:JSON.stringify({
+<script>
 
-model:"gpt-3.5-turbo",
+function askAI(){
 
-messages:[
-{role:"user",content:question}
-]
+let input=document.getElementById("userInput").value.toLowerCase();
+let reply="";
 
-})
-
-});
-
-let data = await response.json();
-
-document.getElementById("chatbox").innerHTML =
-data.choices[0].message.content;
-
+if(input.includes("hello") || input.includes("hi")){
+reply="नमस्ते 👋 मैं Syntrix AI हूँ";
+}
+else if(input.includes("ipl")){
+reply="IPL भारत की सबसे बड़ी क्रिकेट लीग है 🏏";
+}
+else if(input.includes("time")){
+reply="अभी का समय: "+ new Date().toLocaleTimeString();
+}
+else{
+reply="माफ़ करें, मैं अभी सीख रहा हूँ 🤖";
 }
 
-</script></body>
+document.getElementById("reply").innerHTML=reply;
+
+}
+
+</script>
+
+</body>
 </html>
