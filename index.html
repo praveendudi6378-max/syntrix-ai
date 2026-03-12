@@ -6,13 +6,24 @@
 body{
 font-family: Arial;
 text-align:center;
-background:#111;
+background:#0b0b0b;
 color:white;
 }
 button{
-padding:10px 20px;
+padding:12px 25px;
 margin:10px;
 font-size:18px;
+background:#00ffcc;
+border:none;
+border-radius:6px;
+}
+#chatbox{
+width:80%;
+height:200px;
+margin:auto;
+background:#222;
+padding:10px;
+overflow:auto;
 }
 </style>
 </head>
@@ -22,9 +33,29 @@ font-size:18px;
 <h1>🤖 Syntrix AI</h1>
 <p>Full AI Website Interface</p>
 
-<button onclick="alert('AI Chat Coming Soon')">AI Chat</button>
-<button onclick="alert('Prediction Tool Coming Soon')">Prediction Tool</button>
-<button onclick="alert('Automation Tool Coming Soon')">Automation Tool</button>
+<button onclick="openChat()">AI Chat</button>
+<button onclick="prediction()">Prediction Tool</button>
+<button onclick="automation()">Automation Tool</button>
+
+<div id="chatbox"></div>
+
+<script>
+
+function openChat(){
+let msg = prompt("Ask AI something");
+document.getElementById("chatbox").innerHTML += "<p>You: "+msg+"</p>";
+document.getElementById("chatbox").innerHTML += "<p>AI: Processing your request...</p>";
+}
+
+function prediction(){
+alert("Prediction tool coming soon");
+}
+
+function automation(){
+alert("Automation tool activated");
+}
+
+</script>
 
 </body>
 </html>
