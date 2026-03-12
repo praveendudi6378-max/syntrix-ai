@@ -118,3 +118,117 @@ document.getElementById("panel").innerHTML =
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Syntrix AI</title>
+
+<style>
+body{
+font-family: Arial;
+background:#0f0f0f;
+color:white;
+text-align:center;
+margin:0;
+}
+
+header{
+background:#1f1f1f;
+padding:20px;
+font-size:30px;
+}
+
+.container{
+margin-top:40px;
+}
+
+button{
+padding:15px 25px;
+margin:10px;
+font-size:18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:#00c3ff;
+color:black;
+}
+
+button:hover{
+background:#00ff9d;
+}
+
+.chatbox{
+margin-top:30px;
+}
+
+input{
+padding:10px;
+width:250px;
+font-size:16px;
+}
+
+#output{
+margin-top:20px;
+font-size:18px;
+color:#00ff9d;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🤖 Syntrix AI
+</header>
+
+<div class="container">
+
+<h2>AI Tools</h2>
+
+<button onclick="prediction()">📊 Prediction Tool</button>
+<button onclick="automation()">⚙ Automation Tool</button>
+
+<div class="chatbox">
+<h2>AI Chat</h2>
+
+<input type="text" id="userInput" placeholder="Type message...">
+<button onclick="chat()">Send</button>
+
+<div id="output"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function prediction(){
+document.getElementById("output").innerHTML =
+"Prediction system coming soon...";
+}
+
+function automation(){
+document.getElementById("output").innerHTML =
+"Automation tools loading...";
+}
+
+function chat(){
+
+let text = document.getElementById("userInput").value;
+
+if(text=="hello"){
+document.getElementById("output").innerHTML="Hello 👋";
+}
+else if(text=="ai"){
+document.getElementById("output").innerHTML="Syntrix AI Active";
+}
+else{
+document.getElementById("output").innerHTML="AI is thinking...";
+}
+
+}
+
+</script>
+
+</body>
+</html>
