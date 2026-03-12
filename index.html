@@ -1,234 +1,74 @@
-
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
-<title>Syntrix AI Dashboard</title>
-
-<style>
-
+<meta charset="UTF-8">
+<title>Syntrix AI</title><style>
 body{
+background:#0f172a;
+color:white;
 font-family:Arial;
-background:#0f0f0f;
-color:white;
 text-align:center;
 }
 
-.header{
-background:#111;
-padding:20px;
-font-size:28px;
-}
-
-.menu button{
-padding:12px 25px;
-margin:10px;
-font-size:18px;
-border:none;
-border-radius:6px;
-background:#00ffd5;
-}
-
-.box{
-margin:20px auto;
-width:80%;
-background:#1e1e1e;
-padding:20px;
-border-radius:10px;
-}
-
-input{
-padding:10px;
-width:70%;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="header">
-🤖 Syntrix AI Dashboard
-</div>
-
-<div class="menu">
-
-<button onclick="chat()">AI Chat</button>
-
-<button onclick="predict()">Prediction Tool</button>
-
-<button onclick="auto()">Automation</button>
-
-</div>
-
-<div class="box" id="panel">
-
-<p>Welcome to Syntrix AI System</p>
-
-</div>
-
-<script>
-
-function chat(){
-
-document.getElementById("panel").innerHTML =
-`
-<h2>AI Chat</h2>
-
-<input id="msg" placeholder="Ask AI something">
-
-<button onclick="send()">Send</button>
-
-<div id="chatlog"></div>
-`;
-
-}
-
-async function send(){
-
-let text = document.getElementById("msg").value;
-
-document.getElementById("chatlog").innerHTML +=
-"<p>🧑‍💻 You: "+text+"</p>";
-
-let response = await fetch("https://api.affiliateplus.xyz/api/chatbot?message="+text+"&botname=SyntrixAI&ownername=Praveen");
-
-let data = await response.json();
-
-document.getElementById("chatlog").innerHTML +=
-"<p>🤖 AI: "+data.message+"</p>";
-
-}
-
-function predict(){
-
-document.getElementById("panel").innerHTML =
-"<h2>Prediction Tool</h2><p>Prediction system loading...</p>";
-
-}
-
-function auto(){
-
-document.getElementById("panel").innerHTML =
-"<h2>Automation Tools</h2><p>Automation system ready</p>";
-
-}
-
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Syntrix AI</title>
-
-<style>
-body{
-font-family: Arial;
-background:#0f0f0f;
-color:white;
-text-align:center;
-margin:0;
-}
-
-header{
-background:#1f1f1f;
-padding:20px;
-font-size:30px;
-}
-
-.container{
+h1{
 margin-top:40px;
 }
 
-button{
-padding:15px 25px;
-margin:10px;
-font-size:18px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-background:#00c3ff;
-color:black;
-}
-
-button:hover{
-background:#00ff9d;
-}
-
-.chatbox{
-margin-top:30px;
-}
-
 input{
-padding:10px;
+padding:12px;
 width:250px;
 font-size:16px;
 }
 
-#output{
-margin-top:20px;
+button{
+padding:12px 20px;
+background:#22c55e;
+border:none;
+font-size:16px;
+color:white;
+cursor:pointer;
+}
+
+#chatbox{
+margin-top:30px;
 font-size:18px;
-color:#00ff9d;
+color:#38bdf8;
 }
-</style>
-</head>
+</style></head><body><h1>🤖 Syntrix AI</h1><input id="question" placeholder="कुछ पूछो...">
+<button onclick="askAI()">भेजें</button><div id="chatbox"></div><script>
 
-<body>
+async function askAI(){
 
-<header>
-🤖 Syntrix AI
-</header>
+let question=document.getElementById("question").value;
 
-<div class="container">
+document.getElementById("chatbox").innerHTML="AI सोच रहा है...";
 
-<h2>AI Tools</h2>
+let response = await fetch("https://api.openai.com/v1/chat/completions",{
 
-<button onclick="prediction()">📊 Prediction Tool</button>
-<button onclick="automation()">⚙ Automation Tool</button>
+method:"POST",
 
-<div class="chatbox">
-<h2>AI Chat</h2>
+headers:{
+"Content-Type":"application/json",
+"Authorization":"Bearer YOUR_API_KEY"
+},
 
-<input type="text" id="userInput" placeholder="Type message...">
-<button onclick="chat()">Send</button>
+body:JSON.stringify({
 
-<div id="output"></div>
+model:"gpt-3.5-turbo",
 
-</div>
+messages:[
+{role:"user",content:question}
+]
 
-</div>
+})
 
-<script>
+});
 
-function prediction(){
-document.getElementById("output").innerHTML =
-"Prediction system coming soon...";
-}
+let data = await response.json();
 
-function automation(){
-document.getElementById("output").innerHTML =
-"Automation tools loading...";
-}
-
-function chat(){
-
-let text = document.getElementById("userInput").value;
-
-if(text=="hello"){
-document.getElementById("output").innerHTML="Hello 👋";
-}
-else if(text=="ai"){
-document.getElementById("output").innerHTML="Syntrix AI Active";
-}
-else{
-document.getElementById("output").innerHTML="AI is thinking...";
-}
+document.getElementById("chatbox").innerHTML =
+data.choices[0].message.content;
 
 }
 
-</script>
-
-</body>
+</script></body>
 </html>
