@@ -1,58 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Syntrix AI</title>
+<title>Syntrix AI Dashboard</title>
+
 <style>
+
 body{
-font-family: Arial;
-text-align:center;
-background:#0b0b0b;
+font-family:Arial;
+background:#0f0f0f;
 color:white;
+text-align:center;
 }
-button{
+
+.header{
+background:#111;
+padding:20px;
+font-size:28px;
+}
+
+.menu button{
 padding:12px 25px;
 margin:10px;
 font-size:18px;
-background:#00ffcc;
 border:none;
 border-radius:6px;
+background:#00ffd5;
 }
-#chatbox{
+
+.box{
+margin:20px auto;
 width:80%;
-height:200px;
-margin:auto;
-background:#222;
-padding:10px;
-overflow:auto;
+background:#1e1e1e;
+padding:20px;
+border-radius:10px;
 }
+
+input{
+padding:10px;
+width:70%;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<h1>🤖 Syntrix AI</h1>
-<p>Full AI Website Interface</p>
+<div class="header">
+🤖 Syntrix AI Dashboard
+</div>
 
-<button onclick="openChat()">AI Chat</button>
-<button onclick="prediction()">Prediction Tool</button>
-<button onclick="automation()">Automation Tool</button>
+<div class="menu">
 
-<div id="chatbox"></div>
+<button onclick="chat()">AI Chat</button>
+
+<button onclick="predict()">Prediction Tool</button>
+
+<button onclick="auto()">Automation</button>
+
+</div>
+
+<div class="box" id="panel">
+
+<p>Welcome to Syntrix AI System</p>
+
+</div>
 
 <script>
 
-function openChat(){
-let msg = prompt("Ask AI something");
-document.getElementById("chatbox").innerHTML += "<p>You: "+msg+"</p>";
-document.getElementById("chatbox").innerHTML += "<p>AI: Processing your request...</p>";
+function chat(){
+
+document.getElementById("panel").innerHTML =
+`
+<h2>AI Chat</h2>
+
+<input id="msg" placeholder="Ask AI something">
+
+<button onclick="send()">Send</button>
+
+<div id="chatlog"></div>
+
+`;
+
 }
 
-function prediction(){
-alert("Prediction tool coming soon");
+function send(){
+
+let text = document.getElementById("msg").value;
+
+document.getElementById("chatlog").innerHTML +=
+"<p>🧑‍💻 You: "+text+"</p>";
+
+document.getElementById("chatlog").innerHTML +=
+"<p>🤖 AI: I am processing your request...</p>";
+
 }
 
-function automation(){
-alert("Automation tool activated");
+function predict(){
+
+document.getElementById("panel").innerHTML =
+"<h2>Prediction Tool</h2><p>Prediction system loading...</p>";
+
+}
+
+function auto(){
+
+document.getElementById("panel").innerHTML =
+"<h2>Automation Tools</h2><p>Automation system ready</p>";
+
 }
 
 </script>
