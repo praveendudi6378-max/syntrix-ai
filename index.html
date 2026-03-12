@@ -79,22 +79,25 @@ document.getElementById("panel").innerHTML =
 <button onclick="send()">Send</button>
 
 <div id="chatlog"></div>
-
 `;
 
 }
 
-function send(){
+async function send(){
 
 let text = document.getElementById("msg").value;
 
 document.getElementById("chatlog").innerHTML +=
 "<p>🧑‍💻 You: "+text+"</p>";
 
-document.getElementById("chatlog").innerHTML +=
-"<p>🤖 AI: I am processing your request...</p>";
+let response = await fetch("https://api.affiliateplus.xyz/api/chatbot?message="+text+"&botname=SyntrixAI&ownername=Praveen");
 
-  }
+let data = await response.json();
+
+document.getElementById("chatlog").innerHTML +=
+"<p>🤖 AI: "+data.message+"</p>";
+
+}
 
 function predict(){
 
